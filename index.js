@@ -35,16 +35,4 @@ const testCase = () => {
 var entryNode = testCase();
 var depth = 0;
 // TODO реализовать алгоритм подсчета глубины дерева имея произвольный узел этого дерева.
-while (entryNode.parent) {
-	entryNode = entryNode.parent;
-}
-var level = entryNode.children;
-while (level.length > 0) {
-	let nextLevel = [];
-	for (var child of level) {
-		nextLevel.push(...child.children);
-	}
-	level = nextLevel;
-	depth++;
-}
 console.log('max depth: ' + depth);
