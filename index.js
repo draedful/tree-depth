@@ -1,6 +1,5 @@
 class Node {
-  constructor(node, name) {
-    this._name = name;
+  constructor(node) {
     if (node) {
       this.parent = node;
       node.children.push(this);
@@ -23,32 +22,55 @@ class Node {
   }
 }
 const testCase = () => {
-  let root = new Node();
-  let lv1ch1 = new Node();
-  let lv1ch2 = new Node(root);
-  let lv2ch1 = new Node(lv1ch1);
-  let lv3ch1 = new Node(lv2ch1);
-  let lv3ch2 = new Node(lv2ch1);
-  let lv3ch3 = new Node(lv2ch1);
-  let lv4ch1 = new Node(lv3ch1);
-  let lv4ch2 = new Node(lv3ch1);
-  let lv4ch3 = new Node(lv3ch2);
+  var root = new Node(),
+    node = root,
+    i;
 
-  return lv3ch1;
+  // генерация 3 веток дерева
+
+  for(i = 10; i >= 0; i--) {
+    node = new Node(node);
+  }
+
+  node = root;
+
+  for(i = 20; i >= 0; i--) {
+    node = new Node(node);
+  }
+
+  node = root;
+  
+  for(i = 30; i >= 0; i--) {
+    node = new Node(node);
+  }
+
+  // отдаем последнюю ветку 3-ей ветки
+  return node;
 };
 
 var entryNode = testCase();
 
-var getRootNode = (node) => node.parent ? node : getRootNode(node.parent);
+/**
+ * @param {Node} node
+ *
+ * @return {Node} - родительское дерево
+ * */
+const getRootNode = (node) => node.parent ? getRootNode(node.parent) : node;
 
-function getMaxDepth(node, first) {
-  var level = 1;
-  node.children.forEach((child) => {
-    level = Math.max((getMaxDepth(child) + 1), level)
-  });
-  return first ? level - 1 : level;
+
+/**
+ * @param {Node} node - узел или дерево
+ *
+ * @return {number} - глубина узла, учиитывая сам узел. Т.е глубина + 1
+ * */
+function getMaxDepth(node) {
+  var level = 0;
+  if(node.children.length) {
+    node.children.forEach( (child) => level = Math.max((getMaxDepth(child) + 1), level) );
+  }
+  return level;
 }
 
-var depth = getMaxDepth(getRootNode(entryNode)) - 1;
-// TODO реализовать алгоритм подсчета глубины дерева имея произвольный узел этого дерева.
-console.log('max depth: ' + depth);
+var max = getMaxDepth(getRootNode(entryNode));
+
+console.log('max depth: ' + max);
