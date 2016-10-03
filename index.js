@@ -59,7 +59,7 @@ const getRootNode = (node) => node.parent ? getRootNode(node.parent) : node;
 
 
 /**
- * @param {Node} node - узел или дерево
+ * @param {Node} node
  *
  * @return {number} - глубина узла, учиитывая сам узел. Т.е глубина + 1
  * */
@@ -70,6 +70,8 @@ function getMaxDepth(node) {
   }
   return level;
 }
+
+
 
 var max = getMaxDepth(getRootNode(entryNode)) - 1; // -1 потому что компенсируем узел самого дерева, который учитывался в функции getMaxDepth
 
