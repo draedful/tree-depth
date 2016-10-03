@@ -71,6 +71,6 @@ function getMaxDepth(node) {
   return level;
 }
 
-var max = getMaxDepth(getRootNode(entryNode));
+var max = getMaxDepth(getRootNode(entryNode)) - 1; // -1 потому что компенсируем узел самого дерева, который учитывался в функции getMaxDepth
 
 console.log('max depth: ' + max);
