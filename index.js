@@ -23,16 +23,16 @@ class Node {
   }
 }
 const testCase = () => {
-  let root = new Node(null, 'root');
-  let lv1ch1 = new Node(root, 'root 1 1');
-  let lv1ch2 = new Node(root, 'root 1 2');
-  let lv2ch1 = new Node(lv1ch1, 'root 2 1');
-  let lv3ch1 = new Node(lv2ch1, 'root 2 1 1');
-  let lv3ch2 = new Node(lv2ch1, 'root 2 1 2');
-  let lv3ch3 = new Node(lv2ch1, 'root 2 1 3');
-  let lv4ch1 = new Node(lv3ch1, 'root 2 1 1 1');
-  let lv4ch2 = new Node(lv3ch1, 'root 2 1 1 2');
-  let lv4ch3 = new Node(lv3ch2, 'root 2 1 2 1');
+  let root = new Node();
+  let lv1ch1 = new Node();
+  let lv1ch2 = new Node(root);
+  let lv2ch1 = new Node(lv1ch1);
+  let lv3ch1 = new Node(lv2ch1);
+  let lv3ch2 = new Node(lv2ch1);
+  let lv3ch3 = new Node(lv2ch1);
+  let lv4ch1 = new Node(lv3ch1);
+  let lv4ch2 = new Node(lv3ch1);
+  let lv4ch3 = new Node(lv3ch2);
 
   return lv3ch1;
 };
